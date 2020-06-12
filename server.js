@@ -24,3 +24,13 @@ app.get("/tables", function (req, res) {
 app.listen(PORT, function() {
     console.log("App is listening on PORT " + PORT);
 });
+
+
+app.post("/tables", function(req, res) {
+    var newReservation = req.body;
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    console.log(newReservation);
+
+    reservation.push(newReservation);
+    res.json(newReservation);
+});
