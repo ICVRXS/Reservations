@@ -12,24 +12,22 @@
 <body>
     <div class ="container">
         <div class="jumbotron">
-            <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <h1 class="text-center">Dorsia</h1>
             <hr>
-            <h2 class="text-center">Current Reservations and Waiting List</h2>
-            <br>
-
+            <h2 class="text-center">We are very booked up and way too expensive for you.</h2>
+            <hr>
+            <p class="text-center">You're welcome to try to get a reservation...</p>
             <div class="text-center">
-                <a href="/reserve">
-                    <button type="button" class="btn btn-lg btn-danger">
-                        <span class="glyphicon glyphicon-credit-card"></span>
-                         Make Reservation
+                <a href="/tables">
+                    <button  type="button" class="btn btn-lg btn-dark">
+                        <span>Make a reservation</span>
                     </button>
-                </a>
+                </a> 
                 <a href="/">
-                    <button type="button" class="btn btn-lg btn-default">
-                        <span class="glyphicon glyphicon-home"></span>
-                         Home
+                    <button  type="button" class="btn btn-lg btn-dark">
+                        <span>Home</span>
                     </button>
-                </a>
+                </a> 
             </div>
         </div>
 
@@ -57,7 +55,6 @@
 
         <footer class="footer">
             <div class="container">
-                <p>Control Panel</p>
                 <p>
                     <a href="#" id="clear">Clear Table</a>
                      | 
@@ -70,7 +67,25 @@
     </div>
 
     <script type="text/javascript">
-    
+        $.get("/api/tables", function(data) {
+            console.log(data);
+            if(data) {
+                for(var i = 0; i < data.length; i++)
+                    $("#tableSection").append(generateTableItem(data[i], i));
+            }
+        });
+
+        $.get("/api/waitlist", function(data) {
+            console.log(data);
+            if(data) {
+                for(var i = 0; i < data.length; i++)
+                    $("#waitlistSection").append(generateTableItem(data[i], i));
+            }
+        })
+
+        function generateHTML (item, index) {
+            return `<div class=\"well\"><h2><span class=\"label label-primary\">${index}</span> | ${item.uniqueID}</h2></div>`;
+        }
     </script>
 </body>
 </html>
