@@ -12,5 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ICVRXS/Reservations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ICVRXS/Reservations/issues"
+  },
+  "homepage": "https://github.com/ICVRXS/Reservations#readme"
 }

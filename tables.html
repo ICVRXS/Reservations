@@ -38,7 +38,7 @@
                         <h4 class="panel-title">Current Reservations</h4>
                     </div>
 
-                    <div class="panel-body" id="tableSction">
+                    <div class="panel-body" id="tableSection">
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
             console.log(data);
             if(data) {
                 for(var i = 0; i < data.length; i++)
-                    $("#tableSection").append(generateTableItem(data[i], i));
+                    $("#tableSection").append(generateHTML(data[i], i + 1));
             }
         });
 
@@ -79,12 +79,12 @@
             console.log(data);
             if(data) {
                 for(var i = 0; i < data.length; i++)
-                    $("#waitlistSection").append(generateTableItem(data[i], i));
+                    $("#waitlistSection").append(generateHTML(data[i], i + 1));
             }
         })
 
         function generateHTML (item, index) {
-            return `<div class=\"well\"><h2><span class=\"label label-primary\">${index}</span> | ${item.uniqueID}</h2></div>`;
+            return `<div class="well"><h2><span class="label label-primary">${index}</span> | ${item.name}</h2></div>`;
         }
     </script>
 </body>
