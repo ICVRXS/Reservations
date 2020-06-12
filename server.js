@@ -8,7 +8,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-var reservation = []
+// Data
+var reserve= [ {
+    reservationNumber:1,
+    reservationName:'Happy Hour'
+  }];
+var waitlist=[
+{
+    reservationNumber:2,
+    reservationName:'New Reservation'
+}
+];
 
 app.get("/", function (req, res) {
     console.log("it works!");
@@ -21,6 +31,9 @@ app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
+app.get("/api/tables", function(req, res) {
+    return res.json({reservations:reserve, waitlist: waitlist});
+});
 app.listen(PORT, function() {
     console.log("App is listening on PORT " + PORT);
 });
