@@ -67,7 +67,25 @@
     </div>
 
     <script type="text/javascript">
-    
+        $.get("/api/tables", function(data) {
+            console.log(data);
+            if(data) {
+                for(var i = 0; i < data.length; i++)
+                    $("#tableSection").append(generateTableItem(data[i], i));
+            }
+        });
+
+        $.get("/api/waitlist", function(data) {
+            console.log(data);
+            if(data) {
+                for(var i = 0; i < data.length; i++)
+                    $("#waitlistSection").append(generateTableItem(data[i], i));
+            }
+        })
+
+        function generateHTML (item, index) {
+            return `<div class=\"well\"><h2><span class=\"label label-primary\">${index}</span> | ${item.uniqueID}</h2></div>`;
+        }
     </script>
 </body>
 </html>
